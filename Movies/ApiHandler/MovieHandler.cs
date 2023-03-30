@@ -44,7 +44,7 @@ namespace Movies.ApiHandler
             string searchLink = baseLink + "&s=" + Title;
 
             if (Year != null)
-                searchLink += Year;
+                searchLink += "&y=" + Year;
 
             try
             {
