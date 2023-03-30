@@ -47,5 +47,27 @@ namespace Movies.Controllers
             }
             return View(movie);
         }
+
+        /// <summary>
+        /// Multiple Movies Endpoint
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> Movies([FromForm] string title, [FromForm] string year)
+        {
+            // Dont waste time doing anything if there is no inputs
+            if (title == null && year == null)
+                return null;
+
+            List<Movie> movie;
+            try
+            {
+                movie = await MovieHandler.CreateMovieList(title, year);
+            } // Figure out how handle errors gracefully
+            catch (Exception e)
+            {
+                return View(null);
+            }
+            return View(movie);
+        }
     }
 }

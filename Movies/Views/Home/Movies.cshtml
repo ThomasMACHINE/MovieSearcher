@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Movies";
+}
+
+@model List<Movie>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">My Website</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+    </div>
+    <form class="form-inline my-2 my-lg-0" action="/" method="get">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Back To Search</button>
+    </form>
+</nav>
+
+@if (Model == null)
+{
+    <p>No Results Yielded, Please Search Another Movie</p>
+    <div class="input_box">
+        <form action="@Url.Action("Movies")" method="post">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="title">Movie Title</label>
+                        <input type="text" class="form-control" id="titleMultiple" name="title" required placeholder="Enter movie title">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="title">Movie Title</label>
+                        <input type="text" class="form-control" id="yearMultiple" name="year" placeholder="Enter relase year">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+}
+else
+{
+    @foreach (Movie movie in Model)
+    {
+        <div class="card border-secondary mb-3 mx-auto" style="max-width: 600px;">
+            <div class="card-body text-white" style="background-color: black;">
+                <div class="card-header bg-secondary text-white movie_view">@movie.Title</div>
+
+                <div class="row">
+                    <div class="col-md-12" style="place-content: center;">
+                        <img src="@movie.Poster" class="card-img-top" alt="@movie.Title" style="max-width: 600px; max-height: 600px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

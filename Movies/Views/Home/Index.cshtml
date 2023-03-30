@@ -21,4 +21,25 @@
     </form>
 </div>
 
+<br />
+<br />
+
+<h1 class="text-center">Or what about multiple movies!?</h1>
+<div class="input_box">
+    <form action="@Url.Action("Movies")" method="post">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="title">Movie Title</label>
+                    <input type="text" class="form-control" id="titleMultiple" name="title" required placeholder="Enter movie title">
+                </div>
+                <div class="col-md-4">
+                    <label for="title">Movie Title</label>
+                    <input type="text" class="form-control" id="yearMultiple" name="year" placeholder="Enter release year">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 

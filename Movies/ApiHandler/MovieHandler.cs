@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Movies.Models;
 using System.Text.Json;
+using System.Collections.Generic;
 
 namespace Movies.ApiHandler
 {
@@ -33,6 +34,32 @@ namespace Movies.ApiHandler
                 return new Movie { Title = e.ToString() };
             }
             return movie;
+        }
+
+        public static async Task<List<Movie>> CreateMovieList(string Title, string Year)
+        {
+            MovieSearch movieSearch = null;
+            List<Movie> movieList;
+            // Format Search Link
+            string searchLink = baseLink + "&s=" + Title;
+
+            if (Year != null)
+                searchLink += Year;
+
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(searchLink);
+                response.EnsureSuccessStatusCode();
+                string responseContent = await response.Content.ReadAsStringAsync();
+
+                movieSearch = JsonSerializer.Deserialize<MovieSearch>(responseContent);
+                movieList = movieSearch.Search;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            return movieList;
         }
     }
 }
