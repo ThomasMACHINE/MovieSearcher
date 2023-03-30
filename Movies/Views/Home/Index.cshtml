@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Movie Searcher</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        </ul>
+    </div>
+</nav>
+
+<h1 class="text-center">Search for a movie!</h1>
+<div class="input_box">
+    <form action="@Url.Action("Movie")" method="post">
+        <div class="form-group">
+            <label for="title">Movie Title</label>
+            <input type="text" class="form-control" id="title" name="title" required placeholder="Enter movie title">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
